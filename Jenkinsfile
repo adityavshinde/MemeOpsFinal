@@ -22,7 +22,7 @@ pipeline {
 
         stage('Login to DockerHub & Push Image') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                withCredentials([usernamePassword(credentialsId: 'DockerHubCred', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                     sh '''
                         echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
                         docker push adityavshinde/memeops
