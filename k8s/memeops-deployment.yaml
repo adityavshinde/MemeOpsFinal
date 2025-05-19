@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: memeops-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: memeops
+  template:
+    metadata:
+      labels:
+        app: memeops
+    spec:
+      containers:
+        - name: memeops-container
+          image: ansk29/memeops:latest
+          ports:
+            - containerPort: 5000
+          resources:
+            requests:
+              cpu: "100m"
+            limits:
+              cpu: "500m"

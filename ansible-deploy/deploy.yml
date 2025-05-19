@@ -1,0 +1,13 @@
+- name: Deploy MemeOps from DockerHub
+  hosts: web
+  become: false
+  tasks:
+    - name: Pull latest MemeOps image
+      shell: docker pull ansk29/memeops
+
+    - name: Stop existing container if running
+      shell: docker rm -f memeops-container || true
+
+    - name: Run MemeOps container
+      shell: docker run -d --name memeops-container -p 5000:5000 ansk29/memeops
+
